@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Treningowy</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+        body {
+            background-color: #111;
+            color: #fff;
+            /* font-family: "Poppins", sans-serif; */
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .workout-section {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        .workout-section h2 {
+            font-size: 20px;
+            font-family: "Alfa Slab One", serif;
+            font-weight: 400;
+            font-style: normal;
+            border-bottom: 1px solid #333;
+            /* padding-bottom: 10px; */
+            margin-bottom: 15px;
+        }
+        .workout-table {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px;
+            color: #888888;
+        }
+        th {
+            color: #fff;
+            font-weight: bold;
+        }
+        td:first-child {
+            color: #fff;
+
+        }
+        .settings-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .modal.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button class="settings-button" onclick="toggleModal()">⚙️</button>
+    <div class="modal" id="settingsModal">
+        <h2>Ustawienia</h2>
+        <input type="file" id="fileInput" accept=".xlsx">
+        <button onclick="clearLocalStorage()">Wyczyść dane</button>
+        <button onclick="toggleModal()">Zamknij</button>
+    </div>
+    <div class="container" id="workoutContainer"></div>
+    <script>
+        function toggleModal() {
+            document.getElementById('settingsModal').classList.toggle('active');
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const sheetName = workbook.SheetNames[0];
+                    const sheet = workbook.Sheets[sheetName];
+                    const jsonData = XLSX.utils.sheet_to_json(sheet);
+                    localStorage.setItem('workoutData', JSON.stringify(jsonData));
+                    displayWorkout(jsonData);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+        function displayWorkout(data) {
+            const container = document.getElementById('workoutContainer');
+            container.innerHTML = '';
+            const workouts = {};
+            
+            data.forEach(row => {
+                const category = row.Category || 'Inne';
+                if (!workouts[category]) {
+                    workouts[category] = [];
+                }
+                workouts[category].push(row);
+            });
+            
+            Object.keys(workouts).forEach(category => {
+                const section = document.createElement('div');
+                section.classList.add('workout-section');
+                section.innerHTML = `<h2>${category}</h2><div class='workout-table'><table><tr><th>Exercise</th><th>Sets / Reps</th><th>Target</th></tr></table></div>`;
+                const table = section.querySelector('table');
+                workouts[category].forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${row.Exercise || 'Brak danych'}</td><td>${row.Sets || '?'} x ${row.Reps || '?'}</td><td>${row['Target'] || row['Muscle'] || row['Muscle Group'] || row['Partia mięśni'] || 'Brak danych'}</td>`;
+                    table.appendChild(tr);
+                });
+                container.appendChild(section);
+            });
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('workoutData');
+            document.getElementById('workoutContainer').innerHTML = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('workoutData');
+            if (savedData) {
+                displayWorkout(JSON.parse(savedData));
+            }
+        });
+    </script>
+</body>
+</html>
