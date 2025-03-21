@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
+
+
+body {
+    font-family: "Goldman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    /* position: absolute; */
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plan-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    width: 340px;
+    text-align: left;
+    margin: 30px 0;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding-bottom: 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+.exercise-header {
+    border-bottom: 2px solid #676767;
+}
+
+.exercise-item {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-name {
+    font-size: 0.8rem;
+    color: rgb(255, 255, 255);
+}
+
+.exercise-target {
+    font-size: 0.8rem;
+    color: #6D6D6D;
+    margin-top: -2px;
+}
+
+.exercise-sets-reps {
+    font-size: 0.8rem;
+    color: white;
+    text-align: right;
+}
+img{
+    width: 30px;
+}
+
+/* Przycisk Settings */
+#settingsBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(78, 78, 78);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background: #222;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}

@@ -1,0 +1,72 @@
+{
+    "Push": [
+        {
+            "name": "Bench Press",
+            "sets": 4,
+            "reps": "8-10",
+            "target": "Upper (Clavicular) chest"
+        },
+        {
+            "name": "Incline DB Press",
+            "sets": 4,
+            "reps": "5-9",
+            "target": "Upper (Clavicular) chest"
+        },
+        {
+            "name": "DB Lateral Raise",
+            "sets": 4,
+            "reps": "6-8",
+            "target": "Side Delts"
+        },
+        {
+            "name": "Triceps Rope Pushdown",
+            "sets": 4,
+            "reps": "6-10",
+            "target": "Long Head"
+        },
+        {
+            "name": "Hammer",
+            "sets": 4,
+            "reps": "8-10",
+            "target": "Upper (Clavicular) chest"
+        },
+        {
+            "name": "Fly",
+            "sets": 4,
+            "reps": "7-12",
+            "target": "Mid (Sternal) Chest"
+        }
+    ],
+    "Pull": [
+        {
+            "name": "Lat Pull Down ",
+            "sets": 4,
+            "reps": "8-12",
+            "target": "Lats"
+        },
+        {
+            "name": "Lift Rowing",
+            "sets": 4,
+            "reps": "7-10",
+            "target": "Lats"
+        },
+        {
+            "name": "Seat DB Curl",
+            "sets": 4,
+            "reps": "6-10",
+            "target": "Biceps"
+        },
+        {
+            "name": "Hammer Curl",
+            "sets": 4,
+            "reps": "7-10",
+            "target": "Biceps, Brachiallis"
+        },
+        {
+            "name": "Pull Down Machine",
+            "sets": 4,
+            "reps": "7-10",
+            "target": "Lats (Illiac bias)"
+        }
+    ]
+}
