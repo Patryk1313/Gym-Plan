@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Automatyczne przypisywanie ikon na podstawie kategorii
     function getCategoryIcons(category) {
         const icons = {
-            "Push": ["push-icon1.png", "push-icon2.png"],
+            "Push": ["push-icon1.png", "push-icon2.png", "push-icon3.png"],
             "Pull": ["pull-icon1.png", "pull-icon2.png", "pull-icon3.png"],
-            "Legs": ["leg-icon1.png"]
+            "Leg": ["leg-icon1.png", "leg-icon2.png", "leg-icon3.png"],
+            "ABS": ["abs-icon1.png", "abs-icon2.png"]
         };
         return icons[category] || [];
     }
