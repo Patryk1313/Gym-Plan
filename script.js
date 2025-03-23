@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Automatyczne przypisywanie ikon na podstawie kategorii
     function getCategoryIcons(category) {
         const icons = {
-            "Push": ["push-icon1.png", "push-icon2.png"],
+            "Push": ["push-icon1.png", "push-icon2.png", "push-icon3.png"],
             "Pull": ["pull-icon1.png", "pull-icon2.png", "pull-icon3.png"],
             "Leg": ["leg-icon1.png"]
         };
