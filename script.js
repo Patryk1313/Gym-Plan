@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const icons = {
             "Push": ["push-icon1.png", "push-icon2.png"],
             "Pull": ["pull-icon1.png", "pull-icon2.png", "pull-icon3.png"],
-            "Legs": ["leg-icon1.png"]
+            "Leg": ["leg-icon1.png"]
         };
         return icons[category] || [];
     }
