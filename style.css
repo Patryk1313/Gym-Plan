@@ -1,42 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Safari form controls reset */
-input, button, select, textarea {
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 0;
-}
-
-/* Full reset input file */
-input[type="file"] {
-    opacity: 0;
-    width: 0;
-    height: 0;
-    position: absolute;
-    z-index: -1;
-}
-
-/* Font smoothing */
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Safer img styling */
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-
-
 /* === Variables === */
 :root {
     --text-color: #f1f1f1;
@@ -301,5 +264,36 @@ button {
 @media screen and (max-width: 1210px) {
     #trainingContainer {
         flex-direction: column;
+    }
+}
+
+/* Fixy TYLKO dla Safari */
+@supports (-webkit-touch-callout: none) {
+    
+    /* Input file fix tylko dla Safari */
+    input[type="file"] {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+    }
+
+    /* Form controls Safari reset */
+    input, button, select, textarea {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
+    }
+
+    /* Font smoothing dla Safari (inne przeglądarki same mają swoje ustawienia) */
+    body {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Możesz też stylować specyficznie np. logo tylko dla Safari */
+    #logoImg {
+        width: 80px;
+        height: auto;
     }
 }
