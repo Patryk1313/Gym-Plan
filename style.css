@@ -6,6 +6,37 @@
     box-sizing: border-box;
 }
 
+/* Safari form controls reset */
+input, button, select, textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+/* Full reset input file */
+input[type="file"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Font smoothing */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safer img styling */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+
 /* === Variables === */
 :root {
     --text-color: #f1f1f1;
