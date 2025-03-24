@@ -9,19 +9,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
-    <h1>Gym Plan</h1>
+        <img id="logoImg" src="img/logo-light.png" alt="Gym Logo">
 
-    <div class="container">
-        <div id="trainingContainer"></div>
-    </div>
+        <div class="container">
+            <div id="trainingContainer"></div>
+        </div>
 
-    <button id="settingsBtn"><img src="img/icon-setting.png" alt="" srcset=""></button>
+    <button id="settingsBtn"><img id="settingIcon" src="img/settings-icon-light.png" alt=""></button>
     <!-- MODAL SETTINGS -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
             <h2>Settings</h2>
+
+            <!-- Upload File -->
+            <label for="fileInput" class="custom-file-upload">
+                Wgraj plan (.xlsx)
+            </label>
             <input type="file" id="fileInput" accept=".xlsx">
+
+            <!-- Clear Data Button -->
             <button id="clearStorage">Clear Data</button>
+
+            <!-- Dark/Light Mode Toggle -->
+            <div class="theme-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch">
+                    <span class="slider round"></span>
+                </label>
+            </div>            
+            
+            <!-- Close Button -->
             <button id="closeModal">Close</button>
         </div>
     </div>

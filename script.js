@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const settingsModal = document.getElementById("settingsModal");
     const settingsBtn = document.getElementById("settingsBtn");
     const closeModalBtn = document.getElementById("closeModal");
+    const themeSwitch = document.getElementById("themeSwitch");
 
-    // Automatyczne przypisywanie ikon na podstawie kategorii
     function getCategoryIcons(category) {
         const icons = {
             "Push": ["push-icon1.png", "push-icon2.png", "push-icon3.png"],
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const category = row.Category;
                 if (!jsonData[category]) {
                     jsonData[category] = {
-                        icon: getCategoryIcons(category), // Automatycznie przypisuje ikonę
+                        icon: getCategoryIcons(category),
                         exercises: []
                     };
                 }
@@ -60,8 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     target: row.Target
                 });
             });
-
-            console.log("Nowy JSON z ikonami:", jsonData); // Debugowanie
 
             localStorage.setItem("trainingPlan", JSON.stringify(jsonData));
             displayTrainings(jsonData);
@@ -86,25 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("div");
             card.classList.add("plan-card");
 
-            // Tworzenie tytułu kategorii (Push, Pull itd.)
             const title = document.createElement("h2");
             title.textContent = category;
             card.appendChild(title);
 
-            // Dodawanie ikon pod tytułem kategorii
             if (data[category].icon && data[category].icon.length > 0) {
                 const iconContainer = document.createElement("div");
                 iconContainer.classList.add("icon-container");
 
                 data[category].icon.forEach((icon) => {
-                    console.log(`Próbuję dodać ikonę: ${icon}`);
                     const img = document.createElement("img");
                     img.src = `./icons/${icon}`;
                     img.alt = category;
                     img.classList.add("workout-icon");
-                    img.onerror = () => {
-                        console.error(`Nie można załadować ikony: ${img.src}`);
-                    };
                     iconContainer.appendChild(img);
                 });
                 card.appendChild(iconContainer);
@@ -139,4 +131,36 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedData) {
         displayTrainings(JSON.parse(savedData));
     }
+
+    // DARK/LIGHT MODE HANDLER
+    function setTheme(isDark) {
+        const logoImg = document.getElementById("logoImg");
+        const settingIcon = document.getElementById("settingIcon");
+    
+        if (isDark) {
+            document.body.classList.add("dark-mode");
+            document.body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+            themeSwitch.checked = true;
+            logoImg.src = "img/logo-light.png";
+            settingIcon.src = "img/settings-icon-dark.png";
+
+        } else {
+            document.body.classList.add("light-mode");
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+            themeSwitch.checked = false;
+            logoImg.src = "img/logo-dark.png";
+            settingIcon.src = "img/settings-icon-light.png";
+
+        }
+    }
+    
+
+    themeSwitch?.addEventListener("change", (e) => {
+        setTheme(e.target.checked);
+    });
+
+    const savedTheme = localStorage.getItem("theme");
+    setTheme(savedTheme === "dark");
 });
