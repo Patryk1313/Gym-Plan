@@ -157,6 +157,20 @@ img {
     z-index: 1000;
 }
 
+#infoModal .modal-content h2{
+    text-align: left;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#infoModal .modal-content p{
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 4px 0;
+}
+
 .modal-content {
     display: flex;
     flex-direction: column;

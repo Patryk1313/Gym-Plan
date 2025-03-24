@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener("click", (event) => {
+        if (event.target === infoModal) {
+            infoModal.style.display = "none";
+        }
+    });
+
+
+    window.addEventListener("click", (event) => {
         if (event.target === settingsModal) {
             settingsModal.style.display = "none";
         }
