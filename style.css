@@ -10,7 +10,7 @@
     --target-color: #6D6D6D;
     --button-bg: #222;
     --button-text: #fff;
-    --bg-image: url(img/bg-img-light2.jpg);
+    --bg-image: url(img/bg-img-light2.png);
     --main-font: "Goldman", sans-serif;
 }
 
@@ -23,7 +23,7 @@ body.dark-mode {
     --target-color: #9a9a9a;
     --button-bg: #333333;
     --button-text: #ffffff;
-    --bg-image: url(img/bg-img2.jpg);
+    --bg-image: url(img/bg-img-dark2.png);
 }
 
 /* === General Styles === */
