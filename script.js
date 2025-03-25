@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Get references to DOM elements
     const fileInput = document.getElementById("fileInput");
     const clearStorageBtn = document.getElementById("clearStorage");
     const trainingContainer = document.getElementById("trainingContainer");
@@ -6,7 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const settingsBtn = document.getElementById("settingsBtn");
     const closeModalBtn = document.getElementById("closeModal");
     const themeSwitch = document.getElementById("themeSwitch");
+    const logoImg = document.getElementById("logoImg");
 
+    // Function to get category-specific icons
     function getCategoryIcons(category) {
         const icons = {
             "Push": ["push-icon1.png", "push-icon2.png", "push-icon3.png"],
@@ -17,25 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return icons[category] || [];
     }
 
+    // Toggle settings modal visibility
     settingsBtn?.addEventListener("click", () => {
-        if(settingsModal.style.display === "none"){
-            settingsModal.style.display = "block";
-        } else {
-            settingsModal.style.display = "none";
-
-        }
+        settingsModal.style.display = settingsModal.style.display === "none" ? "block" : "none";
     });
 
+    // Close settings modal
     closeModalBtn?.addEventListener("click", () => {
         settingsModal.style.display = "none";
     });
 
+    // Close modal when clicking outside of it
     window.addEventListener("click", (event) => {
         if (event.target === settingsModal) {
             settingsModal.style.display = "none";
         }
     });
 
+    // Handle file input change (load and parse Excel file)
     fileInput?.addEventListener("change", function (event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const jsonData = {};
 
+            // Process sheet data and categorize exercises
             rawData.forEach(row => {
                 const category = row.Category;
                 if (!jsonData[category]) {
@@ -66,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
 
+            // Save data to localStorage and display it
             localStorage.setItem("trainingPlan", JSON.stringify(jsonData));
             displayTrainings(jsonData);
         };
@@ -73,12 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.readAsArrayBuffer(file);
     });
 
+    // Clear training data from localStorage
     clearStorageBtn?.addEventListener("click", function () {
         localStorage.removeItem("trainingPlan");
         trainingContainer.innerHTML = "";
         alert("Dane zostały usunięte!");
     });
 
+    // Function to display training data from localStorage
     function displayTrainings(data) {
         trainingContainer.innerHTML = "";
 
@@ -93,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title.textContent = category;
             card.appendChild(title);
 
+            // Add category icons if available
             if (data[category].icon && data[category].icon.length > 0) {
                 const iconContainer = document.createElement("div");
                 iconContainer.classList.add("icon-container");
@@ -107,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.appendChild(iconContainer);
             }
 
+            // Add exercise details
             const header = document.createElement("div");
             header.classList.add("exercise-header");
             header.innerHTML = `<span>Exercise</span><span>Sets / Reps</span>`;
@@ -123,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <span class="exercise-target">${exercise.target}</span>
                 `;
-
                 card.appendChild(exerciseItem);
             });
 
@@ -132,14 +139,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Load saved training plan from localStorage
     const savedData = localStorage.getItem("trainingPlan");
     if (savedData) {
         displayTrainings(JSON.parse(savedData));
     }
 
-    // DARK/LIGHT MODE HANDLER
+    // Function to handle dark/light theme switch
     function setTheme(isDark) {
-        const logoImg = document.getElementById("logoImg");
         const settingIcon = document.getElementById("settingIcon");
     
         if (isDark) {
@@ -149,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
             themeSwitch.checked = true;
             logoImg.src = "img/logo-light.png";
             settingIcon.src = "img/settings-icon-dark.png";
-
         } else {
             document.body.classList.add("light-mode");
             document.body.classList.remove("dark-mode");
@@ -157,20 +163,31 @@ document.addEventListener("DOMContentLoaded", () => {
             themeSwitch.checked = false;
             logoImg.src = "img/logo-dark.png";
             settingIcon.src = "img/settings-icon-light.png";
-
         }
     }
 
+    // Handle theme switch event
     themeSwitch?.addEventListener("change", (e) => {
         setTheme(e.target.checked);
     });
 
-    const savedTheme = localStorage.getItem("theme");
-    setTheme(savedTheme === "dark");
-
-    document.getElementById("logoImg").addEventListener("click", function() {
-        location.reload();
+    // Handle single and double click on logo
+    let clickTimeout;
+    logoImg.addEventListener("click", function () {
+        if (clickTimeout) {
+            clearTimeout(clickTimeout);
+            clickTimeout = null;
+            themeSwitch.checked = !themeSwitch.checked;
+            setTheme(themeSwitch.checked);
+        } else {
+            clickTimeout = setTimeout(() => {
+                location.reload();
+                clickTimeout = null;
+            }, 300);
+        }
     });
     
-
+    // Apply saved theme
+    const savedTheme = localStorage.getItem("theme");
+    setTheme(savedTheme === "dark");
 });
