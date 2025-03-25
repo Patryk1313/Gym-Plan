@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeSwitch = document.getElementById("themeSwitch");
     const logoImg = document.getElementById("logoImg");
 
-    // Function to get category-specific icons
+// Function to get category-specific icons
     function getCategoryIcons(category) {
         const icons = {
             "Push": ["push-icon1.png", "push-icon2.png", "push-icon3.png"],
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         settingsModal.style.display = settingsModal.style.display === "none" ? "block" : "none";
     });
 
-    // Close settings modal
+// Close settings modal
     closeModalBtn?.addEventListener("click", () => {
         settingsModal.style.display = "none";
     });
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Handle file input change (load and parse Excel file)
+// Handle file input change (load and parse Excel file)
     fileInput?.addEventListener("change", function (event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.readAsArrayBuffer(file);
     });
 
-    // Clear training data from localStorage
+// Clear training data from localStorage
     clearStorageBtn?.addEventListener("click", function () {
         localStorage.removeItem("trainingPlan");
         trainingContainer.innerHTML = "";
         alert("Dane zostały usunięte!");
     });
 
-    // Function to display training data from localStorage
+// Function to display training data from localStorage
     function displayTrainings(data) {
         trainingContainer.innerHTML = "";
 
@@ -139,13 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Load saved training plan from localStorage
+ // Load saved training plan from localStorage
     const savedData = localStorage.getItem("trainingPlan");
     if (savedData) {
         displayTrainings(JSON.parse(savedData));
     }
 
-    // Function to handle dark/light theme switch
+// Function to handle dark/light theme switch
     function setTheme(isDark) {
         const settingIcon = document.getElementById("settingIcon");
     
@@ -166,12 +166,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Handle theme switch event
+// Handle theme switch event
     themeSwitch?.addEventListener("change", (e) => {
         setTheme(e.target.checked);
     });
 
-    // Handle single and double click on logo
+// Handle single and double click on logo
     let clickTimeout;
     logoImg.addEventListener("click", function () {
         if (clickTimeout) {
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    // Apply saved theme
+// Apply saved theme
     const savedTheme = localStorage.getItem("theme");
     setTheme(savedTheme === "dark");
 });
