@@ -170,4 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const savedTheme = localStorage.getItem("theme");
     setTheme(savedTheme === "dark");
+
+    document.getElementById("refreshButton").addEventListener("click", function() {
+        location.reload();
+    });
+    
+
 });
