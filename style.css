@@ -16,7 +16,7 @@
 
 body.dark-mode {
     --text-color: #1b1b1b;
-    --card-bg: #e9e9e9;
+    --card-bg: #fbfbfb;
     --exercise-header-color: #1b1b1b;
     --header-color: #ffffff;
     --border-color: #1b1b1b;
@@ -102,7 +102,7 @@ h2 {
 }
 
 .exercise-item {
-    padding: 20px 10px;
+    padding: 15px 10px;
     display: flex;
     flex-direction: column;
 }
