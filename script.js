@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
-    
 
     themeSwitch?.addEventListener("change", (e) => {
         setTheme(e.target.checked);

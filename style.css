@@ -147,6 +147,11 @@ img {
     height: 80px;
 }
 
+#settingsModal {
+    width: 340px;
+    height: 100%;
+}
+
 #settingsModal button {
     width: 100%;
 }
@@ -154,9 +159,8 @@ img {
 .modal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 100px;
+    right: 10px;
     background-color: var(--exercise-header-color);
     color: var(--setting-text);
     padding: 20px;
@@ -206,7 +210,7 @@ button {
     color: var(--button-text);
     border: none;
     padding: 10px 20px;
-    margin: 10px;
+    margin: 40px;
     cursor: pointer;
     border-radius: 5px;
     display: inline-block;
@@ -286,6 +290,18 @@ button {
 @media screen and (max-width: 1210px) {
     #trainingContainer {
         flex-direction: column;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--exercise-header-color);
+        color: var(--setting-text);
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
     }
 }
 
