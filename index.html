@@ -51,54 +51,11 @@
             <!-- Clear Data Button -->
             <button id="clearStorage">Clear Data</button>
 
-            
-            <button id="refreshButton">Refresh</button>
-
             <!-- Close Button -->
             <button id="closeModal">Close</button>
         </div>
     </div>
-
-    <div id="infoModal" class="modal">
-        <div class="modal-content" id="infoContent">
-            <!-- Tu JS dynamicznie wstawi dane -->
-            <button id="closeInfoModal">Close</button>
-        </div>
-    </div>
-
-    <div id="macroCalcModal" class="modal">
-        <div class="modal-content">
-            <h2>Kalkulator Makroskładników</h2>
-            <label>Waga (kg): <input type="number" id="weight" required></label>
-            <label>Wzrost (cm): <input type="number" id="height" required></label>
-            <label>Wiek (lata): <input type="number" id="age" required></label>
     
-            <label>Aktywność fizyczna:
-                <select id="activity">
-                    <option value="1.2">Niska</option>
-                    <option value="1.375">Lekka</option>
-                    <option value="1.55">Średnia</option>
-                    <option value="1.725">Wysoka</option>
-                    <option value="1.9">Bardzo wysoka</option>
-                </select>
-            </label>
-    
-            <label>Cel:
-                <select id="goal">
-                    <option value="maintain">Utrzymanie wagi</option>
-                    <option value="cut">Redukcja</option>
-                    <option value="bulk">Masa</option>
-                </select>
-            </label>
-    
-            <button id="calculateBtn">Oblicz</button>
-    
-            <div id="result" style="margin-top: 15px;"></div>
-            <button id="closeCalcModal">Close</button>
-        </div>
-    </div>
-    
-
     <script src="script.js"></script>
     <script src="nutrition.js"></script>
 </body>

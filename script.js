@@ -31,13 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener("click", (event) => {
-        if (event.target === infoModal) {
-            infoModal.style.display = "none";
-        }
-    });
-
-
-    window.addEventListener("click", (event) => {
         if (event.target === settingsModal) {
             settingsModal.style.display = "none";
         }
@@ -175,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme");
     setTheme(savedTheme === "dark");
 
-    document.getElementById("refreshButton").addEventListener("click", function() {
+    document.getElementById("logoImg").addEventListener("click", function() {
         location.reload();
     });
     
