@@ -18,7 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     settingsBtn?.addEventListener("click", () => {
-        settingsModal.style.display = "block";
+        if(settingsModal.style.display === "none"){
+            settingsModal.style.display = "block";
+        } else {
+            settingsModal.style.display = "none";
+
+        }
     });
 
     closeModalBtn?.addEventListener("click", () => {
