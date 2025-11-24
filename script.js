@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 exerciseItem.innerHTML = `
                     <div style="display: flex; justify-content: space-between;">
                         <span class="exercise-name">${exercise.name}</span>
-                        <span class="exercise-sets-reps">${exercise.sets}x ${exercise.reps}</span>
+                        <span class="exercise-sets-reps">${exercise.sets}x<br>${exercise.reps}</span>
                     </div>
                     <span class="exercise-target">${exercise.target}</span>
                 `;
